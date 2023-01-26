@@ -3,6 +3,15 @@
 
 #include "deq.h"
 
+static void testOne();
+static void testTwo();
+static void testThree();
+static void testFour();
+static void testFive();
+static void testSix();
+static void testSeven();
+static void testEight();
+
 int main() {
   testOne();
   testTwo();
