@@ -9,8 +9,10 @@ static void testThree();
 static void testFour();
 static void testFive();
 static void testSix();
-static void testSeven();
-static void testEight();
+
+/*
+ * Main Constructor
+ */
 
 int main() {
   testOne();
@@ -19,17 +21,22 @@ int main() {
   testFour();
   testFive();
   testSix();
-  testSeven();
-  testEight();
 }
+
+/*
+ * This is a test case for adding at the tail of an empty list
+ */
 
 static void testOne()
 {
   Deq q = deq_new();
   char letter1 = 'z';
   char *point = &letter1;
-  deq_head_put(q, point);
-  if (deq_len(q) == 1) 
+  deq_head_put(q, point); 
+  char letter2 = 'y';
+  char *point2 = &letter2;
+  deq_head_put(q, point2);
+  if (point == deq_tail_get(q)) 
   {
     printf("Pass: Test 1\n");
   } else 
@@ -39,24 +46,33 @@ static void testOne()
   deq_del(q, 0);
 }
 
+/*
+ * This is a test case for adding at the head of an empty list
+ */
 static void testTwo()
 {
-  Deq q=deq_new();
-  if(deq_head_get(q)==NULL)
+  Deq q = deq_new();
+  char letter1 = 'z';
+  char *point = &letter1;
+  deq_head_put(q, point);
+  if (deq_len(q) == 1) 
   {
     printf("Pass: Test 2\n");
-  }
-  else
+  } else 
   {
     printf("Fail: Test 2\n");
   }
-  deq_del(q,0);
+  deq_del(q, 0);
 }
 
-static void testThree() 
+/*
+ * This is a test case for removing at the tail of an empty
+ * list. 
+ */
+static void testThree()
 {
   Deq q=deq_new();
-  if(deq_head_rem(q,0)==NULL)
+  if(deq_tail_get(q)==NULL)
   {
     printf("Pass: Test 3\n");
   }
@@ -67,10 +83,14 @@ static void testThree()
   deq_del(q,0);
 }
 
+/*
+ * This is a test case for removing at the head of an empty
+ * list.
+ */
 static void testFour()
 {
   Deq q=deq_new();
-  if(deq_tail_get(q)==NULL)
+  if(deq_head_get(q)==NULL)
   {
     printf("Pass: Test 4\n");
   }
@@ -80,6 +100,12 @@ static void testFour()
   }
   deq_del(q,0);
 }
+
+/*
+ * This is a test case for removing a specific data at the tail 
+ * of an intended empty list. 
+ * list.
+ */
 
 static void testFive()
 {
@@ -95,58 +121,22 @@ static void testFive()
   deq_del(q,0);
 }
 
+/*
+ * This is a test case for removing a specific data at the head 
+ * of an intended empty list. 
+ * list.
+ */
+
 static void testSix() 
 {
-  Deq q = deq_new();
-  char letter1 = 'z';
-  char *point = &letter1;
-  deq_tail_put(q, point);
-  if (deq_len(q) == 1) 
+  Deq q=deq_new();
+  if(deq_head_rem(q,0)==NULL)
   {
     printf("Pass: Test 6\n");
-  } else 
+  }
+  else
   {
     printf("Fail: Test 6\n");
   }
-  deq_del(q, 0);
+  deq_del(q,0);
 }
-
-static void testSeven()
-{
-  Deq q = deq_new();
-  char letter1 = 'z';
-  char *point = &letter1;
-  deq_head_put(q, point); 
-  char letter2 = 'y';
-  char *point2 = &letter2;
-  deq_head_put(q, point2);
-  if (point == deq_tail_get(q)) 
-  {
-    printf("Pass: Test 7\n");
-  } else 
-  {
-    printf("Fail: Test 7\n");
-  }
-  deq_del(q, 0);
-}
-
-static void testEight()
-{
-  Deq q = deq_new();
-  char letter1 = 'z';
-  char *point = &letter1;
-  deq_head_put(q, point); 
-  char letter2 = 'y';
-  char *point2 = &letter2;
-  deq_head_put(q, point2);
-  if (point2 == deq_tail_get(q)) 
-  {
-    printf("Pass: Test 8\n");
-  } else 
-  {
-    printf("Fail: Test 8\n");
-  }
-  deq_del(q, 0);
-}
-
-//remainder ?

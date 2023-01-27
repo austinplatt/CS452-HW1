@@ -23,12 +23,25 @@ static Rep rep(Deq q) {
   return (Rep)q;
 }
 
+/**
+ * This method serves the purpose of adding an item at the head or 
+ * tail of a list and appending it to the beginning or end of the list.
+ * @param r The list appending to
+ * @param e head or tail types
+ * @param d data that is being added
+ * @return void
+ * 
+ */
+
 static void put(Rep r, End e, Data d) 
 {
   struct Node* newNode;
   if (e == Head) 
   {
     newNode = (struct Node*)malloc(sizeof(struct Node));
+    if(newNode==NULL){
+      return;
+    }
     memset(newNode, 0, sizeof(*newNode));
     newNode->data = d;
     if (r->len == 0) 
@@ -45,7 +58,10 @@ static void put(Rep r, End e, Data d)
   }
   if(e == Tail)
   {
-    newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode = (struct Node*)malloc(sizeof(struct Node*));
+    if(newNode==NULL){
+      return;
+    }
     memset(newNode, 0, sizeof(*newNode));
     newNode->data = d;
     if (r->len == 0) 
@@ -60,8 +76,19 @@ static void put(Rep r, End e, Data d)
     }
     r->len++;
   }
-  free(newNode);
+  //free(newNode);
 }
+
+/**
+ * This method serves the purpose of maintaining the list's integrity 
+ * while returning data from the intended index.
+ * @param r list being parsed
+ * @param e head or tail types
+ * @param i index
+ * @return data
+ * 
+ */
+
 static Data ith(Rep r, End e, int i) 
 { 
   if (i < 0 || i >= r->len) 
@@ -82,6 +109,16 @@ static Data ith(Rep r, End e, int i)
   }
   return currentNode->data;
 }
+
+/**
+ * This method serves the purpose of removing a node from the 
+ * beginning or end of the list.
+ * @param r list that is appending
+ * @param e head or tail type
+ * @return data
+ * 
+ */
+
 static Data get(Rep r, End e)         
 { 
   if (r->len > 2) 
@@ -132,6 +169,17 @@ static Data get(Rep r, End e)
   }
   return 0;
 } 
+
+/**
+ * This method serves the purpose of removing the data if it is 
+ * found in the intended list.
+ * @param r intended list
+ * @param e head or tail types
+ * @param d data that is found
+ * @return data
+ * 
+ */
+
 static Data rem(Rep r, End e, Data d) 
 { 
   if(r->len==0)
@@ -152,7 +200,6 @@ static Data rem(Rep r, End e, Data d)
   }
   while(position != NULL)
   {
-    //This section covers if the data is equal
     if(position->data == d)
     {
       if(position==r->ht[Head])
@@ -172,9 +219,7 @@ static Data rem(Rep r, End e, Data d)
         r->len=r->len-1;
         return rem_data;
       }
-    }
-      //this section covers if data isn't equal
-      else
+    }else
     {
       if(position==r->ht[Head] || position==r->ht[Tail])
       {
