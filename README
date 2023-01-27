@@ -1,0 +1,22 @@
+**************************
+* Homework #1: Queue<Anon>
+* CS452 Spring 2022
+* 1/26/23
+* Austin Platt
+**************************
+
+OVERVIEW:
+
+The goal of the homework assignment was to implement a double-ended doubly-linked list. This program can construct a double-linked queue. Both the head->tail and tail->head directions can be used to parse and change this queue. We also had to put into consideration factoring out commonality, and only implement it once.
+
+COMPLILING AND RUNNING:
+
+To run this, you open up a terminal and locate the CS452 directory with the CS452-HW1 sub-directory in it. You then type "ls" to get a list of all the files in the directory(you will see a file named "try"). Type "make" to automate file compilation and you will then type "try" to run the program. To run Valgrind, you type "valgrind --leak-check=yes try". 
+
+ERRORS:
+
+I encountered a few errors in my test suite. When I ran my test classes locally, there were no errors but when I ran it through Valgrind, it detected some memory leaks. I have debugged them enough to fix some but still could not get my test classes to work at 100%. 
+
+DISCUSSION:
+
+Overall, I had some trouble with this homework. First of all, I am not as confident in C as I am in java so there was a lot of hesitation within performance and confusion with things. I was able to figure my troubles out and get a good role on the methods eventually. However, I did have some trouble with some of the test cases. I haven't run Valgrind in awhile so that also was something to refresh on. Overall, it was a helpful project and I am excited to be able to make improvements on it as the assignments build off each other. 
