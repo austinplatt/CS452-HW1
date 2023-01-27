@@ -39,40 +39,44 @@ static void put(Rep r, End e, Data d)
   if (e == Head) 
   {
     newNode = (struct Node*)malloc(sizeof(struct Node));
-    if(newNode==NULL){
+    if(newNode==NULL)
+    {
       return;
     }
     memset(newNode, 0, sizeof(*newNode));
     newNode->data = d;
     if (r->len == 0) 
     {
-        r->ht[Head] = newNode;
-        r->ht[Tail] = newNode;
-    } else {
-        struct Node* prevHead = r->ht[Head];
-        r->ht[Head] = newNode;
-        prevHead->np[Head] = newNode;
-        newNode->np[Tail] = prevHead;
+      r->ht[Head] = newNode;
+      r->ht[Tail] = newNode;
+    } else 
+    {
+      struct Node* prevHead = r->ht[Head];
+      r->ht[Head] = newNode;
+      prevHead->np[Head] = newNode;
+      newNode->np[Tail] = prevHead;
     }
     r->len++;
   }
   if(e == Tail)
   {
     newNode = (struct Node*)malloc(sizeof(struct Node*));
-    if(newNode==NULL){
+    if(newNode==NULL)
+    {
       return;
     }
     memset(newNode, 0, sizeof(*newNode));
     newNode->data = d;
     if (r->len == 0) 
     {
-        r->ht[Tail] = newNode;
-        r->ht[Head] = newNode;
-    } else {
-        struct Node* prevTail = r->ht[Tail];
-        r->ht[Head] = newNode;
-        prevTail->np[Tail] = newNode;
-        newNode->np[Head] = prevTail;
+      r->ht[Tail] = newNode;
+      r->ht[Head] = newNode;
+    } else 
+    {
+      struct Node* prevTail = r->ht[Tail];
+      r->ht[Head] = newNode;
+      prevTail->np[Tail] = newNode;
+      newNode->np[Head] = prevTail;
     }
     r->len++;
   }
